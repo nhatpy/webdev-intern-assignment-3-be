@@ -3,6 +3,8 @@ package com.g_scrores.g_scores.services.implementions;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.g_scrores.g_scores.exception.AppException;
+import com.g_scrores.g_scores.exception.ErrorCode;
 import com.g_scrores.g_scores.models.ScoreEntity;
 import com.g_scrores.g_scores.repositories.ScoreRepository;
 import com.g_scrores.g_scores.services.interfaces.ScoreService;
@@ -17,6 +19,9 @@ public class ScoreServiceImpl implements ScoreService {
     @Override
     @Cacheable(value = "score", key = "#sbd")
     public ScoreEntity getScoreBySbd(String sbd) {
+        if (!scoreRepository.existsBySbd(sbd)) {
+            throw new AppException(ErrorCode.INVALID_INPUT);
+        }
         return scoreRepository.findBySbd(sbd);
     }
 

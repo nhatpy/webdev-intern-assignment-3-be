@@ -7,5 +7,7 @@ import com.g_scrores.g_scores.models.ScoreEntity;
 
 @Repository
 public interface ScoreRepository extends JpaRepository<ScoreEntity, String> {
+    boolean existsBySbd(String sbd);
+
     ScoreEntity findBySbd(String sbd);
 }
