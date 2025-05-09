@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g_scrores.g_scores.models.ScoreEntity;
+import com.g_scrores.g_scores.dtos.ScoreDto;
 import com.g_scrores.g_scores.services.interfaces.ScoreService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class ScoreController {
     private final ScoreService scoreService;
 
     @GetMapping
-    public ScoreEntity getScoreBySdb(@RequestParam String sbd) {
+    public ScoreDto getScoreBySdb(@RequestParam String sbd) {
         return scoreService.getScoreBySbd(sbd);
     }
 }
