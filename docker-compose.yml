@@ -6,12 +6,22 @@ services:
     container_name: g_scores
     ports:
       - "8080:8080"
-    env_file:
-      - ./.env
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - redis
+    networks:
+      - app-network
+  mysql:
+    image: mysql:8.0.41-debian
+    container_name: mysql_g_scores
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - app-network
   redis:
@@ -25,3 +35,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
