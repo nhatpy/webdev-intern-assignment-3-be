@@ -20,7 +20,7 @@ public class DataSeeder implements CommandLineRunner {
 
     private final JdbcTemplate jdbcTemplate;
 
-    private static final int BATCH_SIZE = 10000;
+    private static final int BATCH_SIZE = 3000;
 
     @Override
     public void run(String... args) throws Exception {
